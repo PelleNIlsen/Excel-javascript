@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Excel to JSON</title>
+
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src = "https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.15.3/xlsx.full.min.js"></script>
+    <script src="js/xlsx.core.min.js"></script>
+    <script src="js/FileSaver.js"></script>
+    <script src="./script.js"></script>
+</head>
+<body class="bg-dark">
+    
+    <div class="container bg-light pt-5 pb-5 p-5 mt-5 rounded shadow-sm">
+        <h2 class="mb-5">Excel To JSON <small class="text-muted">Convert Excel File To A JSON String</small></h2>
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <button class="btn btn-outline-primary" type="button" id="uploadExcel">Convert</button>
+            </div>
+            <div class="custom-file">
+                <input type="file" class="custom-file-input" accept=".xls, .xlsx" id="fileUpload">
+                <label id="label" class="custom-file-label">Choose file</label>
+            </div>
+        </div>
+
+        <div class="progress mb-3">
+            <div id="progressBar" class="progress-bar w-0" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">0%</div>
+        </div>
+
+        <textarea id="jsonData" class="form-control mb-3"></textarea>
+
+        <button class="btn btn-primary form-control btn-lg" id="copyBtn" onclick="copy()">Copy to clipboard</button>
+    </div>
+
+    <div class="container bg-light p-5 mt-5 rounded shadow-sm">
+        <h2 class="mb-5">JSON To Table <small class="text-muted">Convert A JSON String To A HTML Table</small></h2>
+        <div class="input-group mb-3">
+            <input type="text" id="JSONstringToTable" class="form-control" placeholder="JSON String">
+            <div class="input-group-append">
+                <button class="btn btn-outline-primary" type="button" onclick="JSONtoTABLE()">Convert</button>
+            </div>
+        </div>
+
+        <div class="progress mb-3">
+            <div id="progressBarTable" class="progress-bar w-0" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">0%</div>
+        </div>
+
+        <!-- <textarea id="jsonData" class="form-control mb-3"></textarea> -->
+        <table class="form-control mb-3 table table-striped table-borderless table-hover w-100" id="showDataTable"></table>
+
+        <button class="btn btn-primary form-control btn-lg" id="copyBtnTable" onclick="copyTable()">Copy to clipboard</button>
+    </div>
+
+    <div class="container bg-light pt-5 pb-5 p-5 mt-5 rounded shadow-sm">
+        <h2 class="mb-5">Excel To Table <small class="text-muted">Convert Excel File To A HTML Table</small></h2>
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <button class="btn btn-outline-primary" type="button" onclick="excelToTable()" id="uploadExcelToTable">Convert</button>
+            </div>
+            <div class="custom-file">
+                <input type="file" class="custom-file-input" accept=".xls, .xlsx" id="fileUploadToTable">
+                <label id="label" class="custom-file-label">Choose file</label>
+            </div>
+        </div>
+
+        <div class="progress mb-3">
+            <div id="progressBar" class="progress-bar w-0" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">0%</div>
+        </div>
+
+        <table class="form-control mb-3 table table-striped table-borderless table-hover w-100" id="showDataTableFromExcel"></table>
+
+        <button class="btn btn-primary form-control btn-lg" id="copyBtn" onclick="copy()">Copy to clipboard</button>
+    </div>
+
+</body>
+</html>
